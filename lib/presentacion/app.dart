@@ -1,3 +1,4 @@
+import 'package:first_crud/presentacion/screen/detail_user/DetailUser.dart';
 import 'package:first_crud/presentacion/screen/screens.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
         routes: {
           HomeScreen.routeName: (_) => const HomeScreen(),
           NewUserScreen.routeName: (_) => const NewUserScreen(),
+          DetailUserScreen.routeName: (_) => const DetailUserScreen(),
         });
   }
 }
