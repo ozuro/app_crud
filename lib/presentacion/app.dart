@@ -1,4 +1,5 @@
 import 'package:first_crud/presentacion/screen/detail_user/DetailUser.dart';
+import 'package:first_crud/presentacion/screen/new_post/NewPost.dart';
 import 'package:first_crud/presentacion/screen/screens.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
           HomeScreen.routeName: (_) => const HomeScreen(),
           NewUserScreen.routeName: (_) => const NewUserScreen(),
           DetailUserScreen.routeName: (_) => const DetailUserScreen(),
+          NewPostScreen.routeName: (_) => const NewPostScreen(),
         });
   }
 }

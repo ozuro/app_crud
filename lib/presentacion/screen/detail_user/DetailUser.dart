@@ -1,5 +1,6 @@
 import 'package:first_crud/presentacion/screen/detail_user/widgets/info.dart';
 import 'package:first_crud/presentacion/screen/detail_user/widgets/list_post.dart';
+import 'package:first_crud/presentacion/screen/screens.dart';
 import 'package:flutter/material.dart';
 
 class DetailUserScreen extends StatelessWidget {
@@ -10,14 +11,39 @@ class DetailUserScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Detalle de Usuario",
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Theme.of(context).primaryColor,
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: const Text("Eliminar usuario"),
+                        content: const Text(
+                            "¿Estas seguro de eliminar este usuario?"),
+                        actions: [
+                          TextButton(
+                              onPressed: () => Navigator.pop(context),
+                              child: Text(
+                                "Aceptar",
+                                style: TextStyle(
+                                    color: Theme.of(context).primaryColor),
+                              )),
+                          TextButton(
+                              onPressed: () => Navigator.pop(context),
+                              child: const Text(
+                                "Cancelar",
+                                style: TextStyle(color: Colors.black12),
+                              )),
+                        ],
+                      );
+                    });
+              },
               icon: const Icon(
                 Icons.delete_outline,
                 color: Colors.white,
@@ -27,7 +53,7 @@ class DetailUserScreen extends StatelessWidget {
       body: const Column(
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0),
             child: Column(
               children: [
                 InfoWidget(),
@@ -39,8 +65,8 @@ class DetailUserScreen extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const Icon(Icons.add),
+        onPressed: () => Navigator.pushNamed(context, NewPostScreen.routeName),
+        child: Icon(Icons.note_add_rounded),
         backgroundColor: Theme.of(context).primaryColor,
       ),
     );

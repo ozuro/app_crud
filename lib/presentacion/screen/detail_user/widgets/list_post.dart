@@ -6,8 +6,12 @@ class ListaPost extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text("Lista de post"),
+        const Text(
+          "Lista de post",
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+        ),
         Card(
           elevation: 20.0,
           child: SizedBox(
