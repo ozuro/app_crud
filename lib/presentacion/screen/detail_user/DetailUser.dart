@@ -1,3 +1,5 @@
+import 'package:first_crud/presentacion/screen/detail_user/widgets/info.dart';
+import 'package:first_crud/presentacion/screen/detail_user/widgets/list_post.dart';
 import 'package:flutter/material.dart';
 
 class DetailUserScreen extends StatelessWidget {
@@ -7,39 +9,40 @@ class DetailUserScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "Detalle de Usuario",
-            style: TextStyle(color: Colors.white),
-          ),
-          backgroundColor: Theme.of(context).primaryColor,
-          actions: [
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.delete_outline,
-                  color: Colors.white,
-                ))
-          ],
+      appBar: AppBar(
+        title: Text(
+          "Detalle de Usuario",
+          style: TextStyle(color: Colors.white),
         ),
-        body: Column(
-          children: [
-            Text(
-              "Informacion del usuario",
-              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+        backgroundColor: Theme.of(context).primaryColor,
+        actions: [
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.delete_outline,
+                color: Colors.white,
+              ))
+        ],
+      ),
+      body: const Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                InfoWidget(),
+                SizedBox(height: 20.0),
+                ListaPost(),
+              ],
             ),
-            Card(
-              elevation: 20,
-              child: Column(
-                children: [
-                  ListTile(
-                    leading: Icon(Icons.person),
-                    trailing: Text("Nombre"),
-                  )
-                ],
-              ),
-            )
-          ],
-        ));
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.add),
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
+    );
   }
 }
