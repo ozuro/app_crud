@@ -1,3 +1,4 @@
+import 'package:first_crud/presentacion/screen/screens.dart';
 import 'package:flutter/material.dart';
 
 class ListaPost extends StatelessWidget {
@@ -22,7 +23,11 @@ class ListaPost extends StatelessWidget {
                   title: Text("Post $index"),
                   subtitle: Text("Descripcion del post $index"),
                   leading: Icon(Icons.post_add),
-                  trailing: Icon(Icons.arrow_forward_ios),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios,
+                  ),
+                  onTap: () =>
+                      Navigator.pushNamed(context, DetailPostScreen.routeName),
                 );
               },
               separatorBuilder: (context, index) => const Divider(),
