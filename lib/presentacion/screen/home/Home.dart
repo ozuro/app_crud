@@ -1,4 +1,5 @@
 import 'package:first_crud/presentacion/screen/screens.dart';
+import 'package:first_crud/services/http.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -10,6 +11,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final HttpService httpService = HttpService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,18 +19,29 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text("lista de Usuarios"),
         backgroundColor: Theme.of(context).primaryColor,
       ),
-      body: ListView.separated(
-        itemCount: 10,
-        itemBuilder: (BuildContext context, int index) {
-          return ListTile(
-            title: Text("Nombre"),
-            subtitle: Text("correo@gmail.com"),
-            trailing: Icon(Icons.arrow_back_ios_rounded),
-            onTap: () =>
-                Navigator.pushNamed(context, DetailUserScreen.routeName),
-          );
+      body: FutureBuilder(
+        future: httpService.getAllUsers(),
+        builder: (context, snapshot) {
+          return snapshot.hasData
+              ? ListView.separated(
+                  itemCount: snapshot.data!.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    final user = snapshot.data![index];
+                    return ListTile(
+                      title: Text(user.name!),
+                      subtitle: Text(user.email!),
+                      trailing: Icon(Icons.arrow_back_ios_rounded),
+                      onTap: () => Navigator.pushNamed(
+                          context, DetailUserScreen.routeName),
+                    );
+                  },
+                  separatorBuilder: (context, index) => const Divider(),
+                )
+              : Center(
+                  child: CircularProgressIndicator(
+                      color: Theme.of(context).primaryColor),
+                );
         },
-        separatorBuilder: (context, index) => const Divider(),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
